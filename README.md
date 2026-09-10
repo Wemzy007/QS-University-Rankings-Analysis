@@ -2,38 +2,33 @@
 
 ## Project Overview
 
-This project analyzes QS World University Rankings data to identify the factors most strongly associated with university ranking performance and changes over time.
+This project analyzes the **QS World University Rankings 2025** to identify the factors most strongly associated with university ranking performance and changes over time.
 
-The analysis examines academic reputation, employer reputation, employment outcomes, research performance, faculty resources, sustainability, international diversity, institutional size, institutional focus, and research intensity.
-
-The project combines data preparation, exploratory data analysis, correlation analysis, comparative analysis, and interactive Power BI visualization to generate insights that can support strategic decision-making in higher education.
+The analysis combines data cleaning, exploratory analysis, correlation analysis, comparative analysis, institutional segmentation, and Power BI dashboard development to translate university ranking data into actionable insights.
 
 ---
 
 ## Business Problem
 
-Universities invest heavily in reputation, research, faculty development, sustainability, and internationalization.
+Universities invest heavily in research, reputation, faculty resources, internationalisation, sustainability, and student outcomes.
 
-The key question explored in this project is:
+The key question addressed in this project is:
 
-> Which factors contribute most strongly to university ranking performance?
-
-The analysis was designed to help institutional strategy teams understand performance drivers, identify areas for improvement, and make data-informed decisions.
+> **Which factors are most strongly associated with university ranking performance, and where can institutions focus their strategic efforts to improve?**
 
 ---
 
 ## Objectives
 
-The project aims to:
+The analysis focused on:
 
-- Analyze changes in university rankings.
-- Examine the relationship between employer reputation and employment outcomes.
-- Assess the relationship between research performance and ranking performance.
-- Evaluate faculty and student-related indicators.
-- Examine sustainability and international diversity.
-- Compare universities based on institutional size.
-- Analyze institutional focus and research intensity.
-- Identify patterns that can inform strategic recommendations.
+- Examining university ranking movements between 2024 and 2025
+- Assessing the relationship between employer reputation and employment outcomes
+- Evaluating research performance and faculty-related indicators
+- Investigating sustainability and international diversity
+- Comparing institutions by size and institutional focus
+- Assessing the interaction between institutional focus and research intensity
+- Identifying strategic areas associated with stronger ranking performance
 
 ---
 
@@ -41,221 +36,211 @@ The project aims to:
 
 The dataset contains QS World University Rankings information covering:
 
-- Ranking positions
+- 2025 and 2024 ranking positions
 - Academic reputation
 - Employer reputation
 - Employment outcomes
-- Faculty/student indicators
-- Research indicators
 - Citations per faculty
+- Faculty-student ratio
 - International research network
-- International faculty
-- International students
+- International faculty and student ratios
 - Sustainability
-- Institutional characteristics
 - Institutional size
 - Institutional focus
 - Research intensity
+- Other ranking indicators
 
-The dataset contains 28 indicators used throughout the analysis.
+The source dataset was obtained from Kaggle.
 
----
-
-## Data Preparation
-
-The data preparation process included:
-
-- Reviewing data quality
-- Cleaning missing and inconsistent values
-- Standardizing variables
-- Preparing the dataset for analysis and visualization
-- Identifying distributions, outliers, and structural patterns
+The final analytical dataset contained **1,502 universities** after data-quality processing.
 
 ---
 
-## Methodology
+## Data Preparation & Cleaning
 
-The analysis used the following approaches:
+Several data-quality issues were addressed before analysis:
 
-### 1. Exploratory Data Analysis
+- Converted banded ranking values such as `621–630` and `1401+` into usable numerical components
+- Created ranking midpoint values for quantitative analysis
+- Preserved missing Overall Score values and added a scoring-status flag
+- Removed tie notation from ranking fields
+- Corrected character encoding issues
+- Decoded institutional size, focus, and research-intensity codes into readable categories
+- Removed one corrupted record
+- Standardised variables for analysis and visualization
 
-Explored the distributions, patterns, and outliers across the available ranking indicators.
+A total of **902 Overall Score values were null** in the source data and were retained rather than arbitrarily imputed.
 
-### 2. Correlation Analysis
+---
 
-Pearson correlation analysis was used to examine relationships between selected indicators and ranking performance.
+## Analytical Approach
 
-Five Pearson correlations were calculated using DAX.
+The project used:
 
-### 3. Comparative Analysis
+- Exploratory Data Analysis (EDA)
+- Correlation analysis
+- Comparative analysis
+- Ranking movement analysis
+- Institutional segmentation
+- Size and focus analysis
+- Research-intensity analysis
+- Power BI dashboard visualization
 
-Compared:
-
-- Top ranking movers
-- Regional patterns
-- Reputation gaps
-- Institutional size categories
-
-### 4. Segmentation Analysis
-
-Universities were segmented according to:
-
-- Institutional size
-- Institutional focus
-- Research intensity
-
-### 5. Dashboard Visualization
-
-An interactive six-page Power BI dashboard was developed to communicate the analysis and findings.
+The dataset contained **28 indicators**, and Pearson correlations were calculated for selected indicator-to-ranking relationships.
 
 ---
 
 ## Key Findings
 
-### Employer Reputation & Employment Outcomes
+### 1. Research Performance
 
-Employer reputation showed a strong positive relationship with employment outcomes.
+**Citations per Faculty** showed a strong relationship with overall ranking:
 
-**Pearson correlation: r = 0.644**
+> **Pearson correlation: r = -0.68**
 
-This indicates that universities with stronger employer reputation generally achieved better employment outcomes.
-
----
-
-### Research Performance
-
-Citations per Faculty showed one of the strongest relationships with ranking performance.
-
-**Pearson correlation: r = -0.68**
-
-This highlights the importance of research output within the ranking indicators analyzed.
+This was the strongest relationship among the core academic indicators analysed, highlighting the importance of research impact in ranking performance.
 
 ---
 
-### Faculty / Student Ratio
+### 2. Employer Reputation & Employment Outcomes
 
-Faculty/student ratio showed a moderate relationship with ranking performance.
+Employer Reputation showed a meaningful positive relationship with Employment Outcomes:
 
-**Pearson correlation: r = -0.414**
+> **Pearson correlation: r = 0.644**
 
-This suggests that faculty resources and student support contribute to university performance, although the relationship was not as strong as some research-related indicators.
-
----
-
-### International Diversity
-
-International diversity showed very little relationship with ranking performance in the analysis.
-
-**Pearson correlation: r = 0.04**
-
-The analysis therefore suggests that international diversity alone was not strongly associated with ranking performance within this dataset.
+Universities with stronger employer reputations generally demonstrated stronger employment outcomes.
 
 ---
 
-### Sustainability
+### 3. Faculty-Student Ratio
 
-Sustainability showed a strong relationship with ranking performance.
+The Faculty-Student Ratio showed a moderate relationship with ranking:
 
-**Pearson correlation: r = -0.74**
+> **Pearson correlation: r = -0.414**
 
-Within the indicators analyzed, sustainability demonstrated the strongest single-indicator relationship with ranking performance.
-
----
-
-### Institutional Size
-
-Large and Extra-Large universities performed better on several research-related metrics.
-
-Smaller institutions, however, often performed better on faculty/student ratios.
-
-The analysis also showed differences in research network performance across institutional size categories.
+This suggests that faculty resources and student support are relevant to ranking performance, although the relationship was weaker than that observed for research performance.
 
 ---
 
-### Institutional Focus & Research Intensity
+### 4. Sustainability
 
-Universities classified as Fully Comprehensive with Very High Research Intensity achieved the strongest overall performance across key indicators analyzed.
+Sustainability demonstrated a strong relationship with overall ranking:
+
+> **Pearson correlation: r = -0.742**
+
+The analysis identifies sustainability as one of the strongest aligned indicators in the dataset.
 
 ---
 
-## Recommendations
+### 5. International Diversity
 
-Based on the findings, the project recommends:
+International diversity showed very little relationship with overall ranking:
+
+> **Pearson correlation: r = 0.036**
+
+This indicates that international diversity, while strategically valuable for universities for many other reasons, showed negligible association with ranking position in this analysis.
+
+---
+
+### 6. Institutional Size
+
+Large and Extra-Large universities generally performed better on research-related measures, while smaller institutions showed strengths in faculty-student ratios.
+
+The analysis suggests that institutional scale can provide advantages in research capacity and international research networks.
+
+---
+
+### 7. Institutional Focus & Research Intensity
+
+The strongest overall institutional configuration identified in the analysis was:
+
+> **Fully Comprehensive + Very High Research Intensity**
+
+The findings indicate that disciplinary breadth combined with high research intensity is strongly associated with stronger performance across key ranking indicators.
+
+---
+
+### 8. Ranking Movements
+
+The elite tier of universities showed considerable stability between 2024 and 2025.
+
+However, some institutions recorded substantial improvements, demonstrating that significant ranking movement is possible through targeted institutional development.
+
+The largest improvement identified in the analysis was approximately:
+
+> **+1,021 ranking positions**
+
+---
+
+## Strategic Recommendations
+
+Based on the analysis, universities seeking to improve their global ranking position should consider:
 
 ### 1. Increase Research Investment
 
-Universities should strengthen research capacity and research output, particularly in areas linked to citations and international research networks.
+- Strengthen research infrastructure
+- Improve faculty research capacity
+- Increase research productivity and impact
+- Expand international research collaborations
+- Improve access to research funding
 
 ### 2. Strengthen Employer Engagement
 
-Universities should develop stronger relationships with employers and industry to improve employer reputation and employment outcomes.
+- Build stronger relationships with employers
+- Develop industry partnerships
+- Improve graduate employability
+- Strengthen alumni and employer networks
 
-### 3. Expand Sustainability Initiatives
+### 3. Prioritise Sustainability
 
-Sustainability should remain a strategic priority given its strong relationship with ranking performance in the analyzed dataset.
+- Integrate sustainability into institutional strategy
+- Strengthen environmental and social initiatives
+- Improve sustainability measurement and reporting
+
+### 4. Develop Institutional Capacity
+
+Institutions should consider their size, disciplinary focus, and research intensity when developing ranking-improvement strategies rather than applying a one-size-fits-all approach.
 
 ---
 
 ## Power BI Dashboard
 
-The project includes a six-page interactive Power BI dashboard covering:
+The project includes a **six-page interactive Power BI dashboard** designed to communicate the analysis through:
 
-- Rank Movement Analysis
-- Employer Reputation vs Employment Outcomes
-- Research Performance
-- Faculty Resources
-- Institution Size
-- Sustainability & Diversity
-- Institutional Focus & Research Intensity
+- KPI cards
+- Ranking movement analysis
+- Correlation analysis
+- Employer reputation analysis
+- Research performance analysis
+- Faculty resource analysis
+- Institution size comparisons
+- Sustainability and diversity analysis
+- Institutional focus and research-intensity segmentation
 
-The dashboard incorporates interactive visualizations, KPI cards, correlation analysis, and comparative views.
-
----
-
-## Tools Used
-
-- Microsoft Excel
-- SQL
-- Microsoft Power BI
-- DAX
-- Data Visualization
-- Exploratory Data Analysis
-- Correlation Analysis
-
----
-
-## Skills Demonstrated
-
-- Data Cleaning
-- Data Preparation
-- SQL Analysis
-- Exploratory Data Analysis
-- Correlation Analysis
-- DAX
-- Power BI Dashboard Development
-- Data Visualization
-- Comparative Analysis
-- Data Storytelling
-- Insight Generation
-- Strategic Recommendations
+Dashboard screenshots are available in the `screenshots` folder.
 
 ---
 
 ## Project Structure
 
 ```text
-QS-University-Rankings-Analysis
+QS-University-Rankings-Analysis/
 │
 ├── README.md
 │
-├── SQL
-│   └── SQL analysis files
+├── Data/
+│   └── QS World University Rankings 2025 (Top global universities).csv
 │
-├── Excel
-│   └── Excel analysis files
+├── Power BI/
+│   ├── Cleaned dataset for universities ranking.pbix
+│   └── Dashboard analysis for universities ranking.pbix
 │
-├── Power BI
-│   └── Power BI dashboard
+├── Report/
+│   └── Final Project Analysis Report.pdf
 │
-└── screenshots
-    └── Dashboard screenshots
+├── Presentation/
+│   └── QS_University_Rankings_Presentation(1).pptx
+│
+└── screenshots/
+    ├── Dashboard screenshots
+    └── Analysis visuals
